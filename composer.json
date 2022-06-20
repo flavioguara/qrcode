@@ -1,0 +1,14 @@
+{
+    "name": "cds",
+    "description": "CDS",
+    "authors": [
+        {
+            "name": "CDS",
+            "email": "cds@cds"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "chillerlan/php-qrcode": "dev-master"
+    }
+}
