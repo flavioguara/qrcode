@@ -21,15 +21,13 @@ $options = new QROptions([
 $qrcode = new QRCode($options);
 $nome_qrcode =  $crc64 . '.svg';
 $qrcode->render($url, 'imgqrcode/' . $nome_qrcode);
-$query_prod = "insert into registro (nome, md5, timestamp, qrcode) value ('$nome', '$crc64', '$timestamp', '$nome_qrcode')";
+$query_prod = "insert into registro (nome, md5, timestamp, qrcode) value (:nome, :crc64, :timestamp, :nome_qrcode)";
 $cadastrar = $conn->prepare($query_prod);
-
-/*
 $cadastrar->bindParam(':nome', $nome);
-$cadastrar->bindParam(':hash', $crc64);
-$cadastrar->bindParam(':date', $timestamp);
-$cadastrar->bindParam(':qrcode', $nome_qrcode);
-*/
+$cadastrar->bindParam(':crc64', $crc64);
+$cadastrar->bindParam(':timestamp', $timestamp);
+$cadastrar->bindParam(':nome_qrcode', $nome_qrcode);
+
 if ($cadastrar->execute()) {
 	echo "<br>cadastrado<br>";
 	echo "<a href='index.php'> voltar</a>";
